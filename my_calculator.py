@@ -11,7 +11,7 @@ class CalculatorApp:
         master.title("Calculator with Graph")
         master.geometry("1000x600")
 
-        # Create frames
+        #frames
         self.display_frame = tk.Frame(master)
         self.buttons_frame = tk.Frame(master)
         self.graph_frame = tk.Frame(master)
@@ -20,17 +20,17 @@ class CalculatorApp:
         self.buttons_frame.grid(row=1, column=0, sticky="nsew")
         self.graph_frame.grid(row=0, column=1, rowspan=2, sticky="nsew")
 
-        # Configure grid
+        #grid
         master.grid_columnconfigure(0, weight=1)
         master.grid_columnconfigure(1, weight=2)
         master.grid_rowconfigure(1, weight=1)
 
-        # Display
+        #display?
         self.display_var = tk.StringVar()
         self.display = tk.Entry(self.display_frame, textvariable=self.display_var, font=('Arial', 20), justify='right')
         self.display.pack(fill=tk.BOTH, expand=True)
 
-        # Buttons
+        #buttonzz
         buttons = [
             'x', 'y', '(', ')', 'C', '⌫',
             'sin', 'cos', 'tan', '7', '8', '9', '/',
@@ -48,13 +48,12 @@ class CalculatorApp:
                 col = 0
                 row += 1
 
-        # Configure button grid
         for i in range(7):
             self.buttons_frame.grid_columnconfigure(i, weight=1)
         for i in range(5):
             self.buttons_frame.grid_rowconfigure(i, weight=1)
 
-        # Graph
+        #graph
         self.fig, self.ax = plt.subplots()
         self.canvas = FigureCanvasTkAgg(self.fig, master=self.graph_frame)
         self.canvas.draw()
@@ -90,7 +89,6 @@ class CalculatorApp:
             self.display_var.set(self.display_var.get() + key)
 
     def evaluate(self, expression):
-        # Define safe versions of math functions
         safe_dict = {
             'sin': math.sin, 'cos': math.cos, 'tan': math.tan,
             'asin': math.asin, 'acos': math.acos, 'atan': math.atan,
